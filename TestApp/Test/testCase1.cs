@@ -56,7 +56,8 @@ namespace TestApp
             LoginPage  login_page = new LoginPage(driver);
             login_page.goToPage();
             Dashboard dashboard = login_page.test_dashboard(username, password);
-            dashboard.GetAccountMenu().Click();
+            Accounts accounts = dashboard.GetAccountMenu();
+            AccountForm account_form = accounts.OpenForm(); 
             
 
             /*IWebElement password_input = driver.FindElement(By.Name("pw"));

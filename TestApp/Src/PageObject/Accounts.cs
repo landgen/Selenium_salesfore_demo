@@ -7,7 +7,7 @@ using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 using TestApp.Src.PageObject;
 
-namespace TestApp.PageObjects.Accounts
+namespace TestApp.PageObjects
 {
     class Accounts
     {

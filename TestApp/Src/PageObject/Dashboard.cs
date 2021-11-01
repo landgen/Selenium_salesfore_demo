@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
+using TestApp.Src.PageObject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,13 +18,13 @@ namespace TestApp.PageObjects
             this.driver = driver;
             PageFactory.InitElements(driver, this);
         }
-
-        public IWebElement GetAccountMenu()
+        private IWebElement account_menu => driver.FindElement(By.XPath("//a[@title='Accounts']/parent::*"));
+        public Accounts GetAccountMenu()
         {
-     
-             IWebElement account_menu = driver.FindElement(By.XPath("//a[@title='Accounts']/parent::*"));
-            
-            return account_menu;
+            account_menu.Click();
+            // IWebElement account_menu = driver.FindElement(By.XPath("//a[@title='Accounts']/parent::*"));
+
+            return new Accounts(driver);
             
         }
     }
