@@ -15,6 +15,7 @@ namespace TestApp.Src.PageObject
         private WebDriverWait wait;
         private IWebElement save_button => driver.FindElement(By.XPath("//button[@title='Save']/parent::*"));
         private IWebElement account_name => driver.FindElement(By.XPath("//div/label/span[text()='Account Name']/../following::input[1]"));
+        private IWebElement close_button => driver.FindElement(By.XPath("//button[@title='Close this window']/parent::*"));
         public AccountForm(IWebDriver driver)
         {
             this.driver = driver;
@@ -30,6 +31,11 @@ namespace TestApp.Src.PageObject
         {
 
             return save_button;
+        }
+        public IWebElement GetCloseButton()
+        {
+
+            return close_button;
         }
     }
 }

@@ -17,7 +17,7 @@ using TestApp.Src.PageObject;
 namespace TestApp
 {
     [Parallelizable(ParallelScope.All)]
-    class ScenarioOneTest
+    class SalesforceTest
     {
         String username = "geotix.md-4ufz@force.com";
         String password = "Killerek86!";
@@ -31,18 +31,36 @@ namespace TestApp
             driver.Manage().Window.Maximize();
         }
         [Test]
-        public void LogInTest()
+        public void CreateAndVerifyAccount()
         {
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            LoginPage  login_page = new LoginPage(driver);
+            Accounts account_page = this.CreateAccount(); //modal dont close??
+            account_page.GetAccountMenu()
+                .Click();
+            account_page.GetAccountNameFromList("account1");
+
+
+        }
+        [Test]
+        public void EditAccount()
+        {
+            this.CreateAccount();
+            
+        }
+        private Accounts CreateAccount()
+        {
+            //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            LoginPage login_page = new LoginPage(driver);
             login_page.goToPage();
             Dashboard dashboard = login_page.test_dashboard(username, password);
             Accounts accounts = dashboard.GetAccountMenu();
             AccountForm account_form = accounts.OpenForm();
             account_form.GetAccountName().SendKeys("account1");
             account_form.GetSaveButton().Click();
-        }
+            //account_form.GetCloseButton().Click();
 
+            return accounts;
+        }
         [TearDown]
         public void closeBrowser()
         {

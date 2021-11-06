@@ -18,6 +18,23 @@ namespace TestApp.PageObjects
             PageFactory.InitElements(driver, this);
         }
         private IWebElement new_button => driver.FindElement(By.XPath("//a[@title='New']"));
+        private IWebElement account_menu => driver.FindElement(By.XPath("//a[@title='Accounts']/parent::*"));
+        public IWebElement GetAccountMenu()
+        {
+
+            return account_menu;
+
+        }
+        public IWebElement GetNewButton()
+        {
+
+            return new_button;
+        }
+        public IWebElement GetAccountNameFromList(string name)
+        {
+
+            return driver.FindElement(By.XPath(string.Format("//a[@title='{0}']", name)));
+        }
         public AccountForm OpenForm()
         {
         new_button.Click();

@@ -22,7 +22,6 @@ namespace TestApp.PageObjects
         public Accounts GetAccountMenu()
         {
             account_menu.Click();
-            // IWebElement account_menu = driver.FindElement(By.XPath("//a[@title='Accounts']/parent::*"));
 
             return new Accounts(driver);
             
