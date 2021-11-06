@@ -62,7 +62,7 @@ namespace TestApp
             return accounts;
         }
         [TearDown]
-        public void closeBrowser()
+        public void CloseBrowser()
         {
           
             driver.Close();

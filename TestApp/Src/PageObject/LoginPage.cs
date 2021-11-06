@@ -2,10 +2,6 @@
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.PageObjects;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TestApp.PageObjects
 {
@@ -25,25 +21,12 @@ namespace TestApp.PageObjects
         private IWebElement username_input => driver.FindElement(By.Name("username"));
         private IWebElement password_input => driver.FindElement(By.Name("pw"));
         private IWebElement login_button => driver.FindElement(By.Name("Login"));
-        /*
-        [FindsBy(How = How.Name, Using = "username")]
-        [CacheLookup]
-        private IWebElement username_input;
-        
-        
-        [FindsBy(How = How.Name, Using = "pw")]
-        [CacheLookup]
-        private IWebElement password_input;
 
-        [FindsBy(How = How.Name, Using = "Login")]
-        [CacheLookup]
-        private IWebElement login_button;
-*/
         public void goToPage()
         {
             driver.Navigate().GoToUrl(test_url);
         }
-        
+
         public Dashboard test_dashboard(string login, string password)
         {
             username_input.SendKeys(login);
@@ -53,6 +36,6 @@ namespace TestApp.PageObjects
 
             return new Dashboard(driver);
         }
-        
+
     }
 }
