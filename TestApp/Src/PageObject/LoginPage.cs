@@ -7,7 +7,7 @@ namespace TestApp.PageObjects
 {
     class LoginPage
     {
-        String test_url = "https://geotix.my.salesforce.com";
+        String test_url = "https://test-1b4.my.salesforce.com/";
 
         private IWebDriver driver;
         private WebDriverWait wait;

@@ -19,7 +19,7 @@ namespace TestApp
     [Parallelizable(ParallelScope.All)]
     class SalesforceTest
     {
-        String username = "geotix.md-4ufz@force.com";
+        String username = "kontakt-rme6@force.com";
         String password = "Killerek86!";
 
         IWebDriver driver;
@@ -33,21 +33,19 @@ namespace TestApp
         [Test]
         public void CreateAndVerifyAccount()
         {
+            string name = "account1";
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            Accounts account_page = this.CreateAccount(); //modal dont close??
-            account_page.GetAccountMenu()
-                .Click();
-            account_page.GetAccountNameFromList("account1");
-
+            Accounts account_page = this.CreateAccount(name);
+            IWebElement toastr_info = driver.FindElement(By.XPath(string.Format("//span[.='{0}']", name)));
 
         }
         [Test]
         public void EditAccount()
         {
-            this.CreateAccount();
+            this.CreateAccount("fdsfs");
             
         }
-        private Accounts CreateAccount()
+        private Accounts CreateAccount(string name)
         {
             //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             LoginPage login_page = new LoginPage(driver);
@@ -55,7 +53,7 @@ namespace TestApp
             Dashboard dashboard = login_page.test_dashboard(username, password);
             Accounts accounts = dashboard.GetAccountMenu();
             AccountForm account_form = accounts.OpenForm();
-            account_form.GetAccountName().SendKeys("account1");
+            account_form.GetAccountName().SendKeys(name);
             account_form.GetSaveButton().Click();
             //account_form.GetCloseButton().Click();
 
