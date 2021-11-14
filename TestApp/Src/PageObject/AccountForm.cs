@@ -9,8 +9,8 @@ namespace TestApp.Src.PageObject
     {
         private IWebDriver driver;
         private WebDriverWait wait;
-        //private IWebElement save_button => driver.FindElement(By.XPath("//button[@title='Save']/parent::*"));
-        private IWebElement save_button => driver.FindElement(By.XPath("//html/body/div[4]/div[2]/div/div[2]/div/div[2]/div/div/div[2]/div/div/div[2]/button[3]"));
+        private IWebElement save_button => driver.FindElement(By.XPath("//button[@title='Save']/parent::*"));
+        
         private IWebElement account_name => driver.FindElement(By.XPath("//div/label/span[text()='Account Name']/../following::input[1]"));
 
         private IWebElement website_input => driver.FindElement(By.XPath("//div/label/span[text()='Website']/../following::input[1]"));

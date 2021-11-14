@@ -1,7 +1,6 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Support.UI;
 using System;
 using System.Linq;
 using TestApp.PageObjects;
@@ -36,7 +35,6 @@ namespace TestApp
         [Test]
         public void EditAccount()
         {
-            //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             CreateAccount(account_name);
             try
             {

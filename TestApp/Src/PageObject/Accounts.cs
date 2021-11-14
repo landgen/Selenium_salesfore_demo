@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using SeleniumExtras.PageObjects;
 using TestApp.Src.PageObject;
 
@@ -19,7 +14,8 @@ namespace TestApp.PageObjects
         }
         private IWebElement new_button => driver.FindElement(By.XPath("//a[@title='New']"));
         private IWebElement account_menu => driver.FindElement(By.XPath("//a[@title='Accounts']/parent::*"));
-        private IWebElement edit_button => driver.FindElement(By.XPath("//div[@class='windowViewMode-normal oneContent active lafPageHost']//div[@class='slds-col slds-size_1-of-1 row region-header']//li[2]"));
+        private IWebElement edit_button => driver.FindElement(By.XPath("//button[normalize-space()='Edit']"));
+        
         public IWebElement GetAccountMenu()
         {
 
