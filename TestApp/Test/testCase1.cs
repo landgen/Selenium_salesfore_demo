@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Linq;
 using TestApp.PageObjects;
@@ -27,20 +28,31 @@ namespace TestApp
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
         }
         [Test]
-        public void CreateAndVerifyAccount()
+        public void CreateAccount()
         {
             Accounts account_page = this.CreateAccount(account_name);
-            driver.FindElement(By.XPath(string.Format("//span[.='{0}']", account_name)));
+            driver.FindElement(By.XPath(string.Format("//span[.='Account \"{0}\" was created.']", account_name)));
         }
         [Test]
         public void EditAccount()
         {
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-            Accounts account_page = this.CreateAccount(account_name);
-            AccountForm account_form = account_page.EditForm();
+            //driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            CreateAccount(account_name);
+            try
+            {
+                Accounts account = new Accounts(driver);
+                account.GetEditButton().Click();
+            }
+            catch (StaleElementReferenceException ex)
+            {
+                Accounts account = new Accounts(driver);
+                account.GetEditButton().Click();
+            }
+           
+            AccountForm account_form = new AccountForm(driver);
             account_form.GetWebsite().SendKeys(website);
             account_form.GetSaveButton().Click();
-            driver.FindElement(By.XPath(string.Format("//span[.='{0}']", website)));
+            driver.FindElement(By.XPath(string.Format("//span[.='Account \"{0}\" was saved.']", account_name)));
 
         }
         private Accounts CreateAccount(string name)
